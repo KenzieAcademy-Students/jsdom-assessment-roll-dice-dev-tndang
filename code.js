@@ -7,18 +7,20 @@ let rollDie = function() {
     return result;
 }
 
-let pairResult = function() {
-    let sum = 0;
+let rollTwo = function() {
+    let result = 0;
     for (let roll = 1; roll <= 2; roll++) {
-        sum += rollDie();
+        result += rollDie();
     }
+
     let finalResult = document.getElementById("result");
-    finalResult.innerText = `You rolled a ${sum}!`;
-    console.log(`The final result of your roll is ${sum}!`);
-    return sum;
+    finalResult.innerText = `You rolled a ${result}!`;
+    
+    return result;
 }
 
 let roll = document.getElementById("roll");
-roll.addEventListener("click", pairResult)
+roll.addEventListener("click", rollTwo);
+
 
 
