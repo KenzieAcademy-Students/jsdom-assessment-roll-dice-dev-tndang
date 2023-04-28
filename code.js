@@ -37,7 +37,7 @@ let renderGraph = function () { // This function creates the div and paragraph e
 let graphUpdate = function () { // This function updates the graph results render
     for ( let rollIndex = 2; rollIndex < results.length; rollIndex++) {
         let graphText = document.getElementById(`resultsWere${rollIndex}`);
-        graphText.innerText = `You rolled a ${rollIndex}: ${results[rollIndex]} times`;
+        graphText.innerText = `You rolled a ${rollIndex}: \n${results[rollIndex]} times`;
     }
 }
 

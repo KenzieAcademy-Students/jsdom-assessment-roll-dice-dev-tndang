@@ -3,3 +3,31 @@
 button {
   cursor: pointer;
 }
+
+p {
+  font-size: 12px;
+}
+
+#graph {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.graphBar {
+  height: 50px;
+  width: 100px;
+  margin: 10px;
+  background: lightgrey;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.graphBar p {
+  margin: 5px;
+}
