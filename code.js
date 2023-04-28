@@ -7,7 +7,7 @@ let rollDie = function() { // This function gives a random number between 1 to 6
     return rollResult;
 }
 
-let rollTwo = function() { // This function simulates rolling a pair of dice
+let rollPair = function() { // This function simulates rolling a pair of dice
     let pairResult = 0;
     for (let roll = 1; roll <= 2; roll++) {
         pairResult += rollDie();
@@ -18,6 +18,15 @@ let rollTwo = function() { // This function simulates rolling a pair of dice
     finalResult.innerText = `You rolled a ${pairResult}!`;
     
     return pairResult;
+}
+
+let pairThousandRolls = function() {
+    for (let roll = 1; roll <= 1000; roll++) {
+        rollPair();
+    }
+
+    let finalResult = document.getElementById("result");
+    finalResult.innerText = `You rolled an additional 1000 times!`;
 }
 
 let renderGraph = function () { // This function creates the div and paragraph elements within the graph div
@@ -35,17 +44,26 @@ let renderGraph = function () { // This function creates the div and paragraph e
 }
 
 let graphUpdate = function () { // This function updates the graph results render
-    for ( let rollIndex = 2; rollIndex < results.length; rollIndex++) {
+    for (let rollIndex = 2; rollIndex < results.length; rollIndex++) {
         let graphText = document.getElementById(`resultsWere${rollIndex}`);
-        graphText.innerText = `You rolled a ${rollIndex}: \n${results[rollIndex]} times`;
+        graphText.innerText = `You rolled a ${rollIndex}: ${results[rollIndex]} times`;
     }
 }
 
 let roll = document.getElementById("roll");
+let rollThousand = document.getElementById("rollThousand");
+let anyButton = document.querySelector("button");
 
-roll.addEventListener("click", rollTwo);
+roll.addEventListener("click", rollPair);
 roll.addEventListener("click", renderGraph, {once : true});
 roll.addEventListener("click", graphUpdate);
+rollThousand.addEventListener("click", pairThousandRolls);
+rollThousand.addEventListener("click", renderGraph, {once : true});
+rollThousand.addEventListener("click", graphUpdate);
+
+
+
+
 
 
 
