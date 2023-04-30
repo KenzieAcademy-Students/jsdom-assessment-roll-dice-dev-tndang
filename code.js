@@ -31,7 +31,7 @@ let pairThousandRolls = function() { // This function simulates rolling one thou
     roll.removeEventListener("click", renderGraph);
 }
 
-let rollThousandListener = function() { // This function removes the event listener 1000 roll button renderGraph function when called on
+let removeThousandRenderer = function() { // This function removes the event listener 1000 roll button renderGraph function when called on
     rollThousand.removeEventListener("click", renderGraph);
 }
 
@@ -41,7 +41,12 @@ let renderGraph = function () { // This function creates the div and paragraph e
     for (let rollIndex = 2; rollIndex < results.length; rollIndex++) {
         let divElement = document.createElement("div");
         graph.append(divElement);
-        divElement.className = "graphBar";
+        divElement.className = "graphBarContainer";
+
+        let divBarElement = document.createElement("div");
+        divElement.append(divBarElement);
+        divBarElement.className = "graphBar"
+        divBarElement.id = `resultBar${rollIndex}`;
 
         let paragraphElement = document.createElement("p");
         divElement.append(paragraphElement);
@@ -52,7 +57,24 @@ let renderGraph = function () { // This function creates the div and paragraph e
 let graphUpdate = function () { // This function updates the graph results render
     for (let rollIndex = 2; rollIndex < results.length; rollIndex++) {
         let graphText = document.getElementById(`resultsWere${rollIndex}`);
-        graphText.innerText = `You rolled a ${rollIndex}: ${results[rollIndex]} times`;
+        graphText.innerText = `You rolled a ${rollIndex}: \n${results[rollIndex]} times`;
+    }
+}
+
+let barElement = function () { // This function determines and sets the bar percentage for each result comparable to the other results
+    for (let rollIndex = 2; rollIndex < results.length; rollIndex++) {
+        let resultsTotalSum = 0;
+        let resultsPercentage = 0;
+        let percentageModifier = 200;
+
+        for (let index = 2; index < results.length; index++) {
+            resultsTotalSum += results[index];
+        }
+
+        resultsPercentage = Math.round((results[rollIndex] / resultsTotalSum) * percentageModifier); 
+
+        let barElement = document.getElementById(`resultBar${rollIndex}`);
+        barElement.style.height = `${resultsPercentage}%`;
     }
 }
 
@@ -61,12 +83,15 @@ let rollThousand = document.getElementById("rollThousand");
 
 roll.addEventListener("click", rollPair);
 roll.addEventListener("click", renderGraph, {once : true});
-roll.addEventListener("click", rollThousandListener);
+roll.addEventListener("click", removeThousandRenderer);
 roll.addEventListener("click", graphUpdate);
+roll.addEventListener("click", barElement);
 
 rollThousand.addEventListener("click", pairThousandRolls);
 rollThousand.addEventListener("click", renderGraph, {once : true});
 rollThousand.addEventListener("click", graphUpdate);
+rollThousand.addEventListener("click", barElement);
+
 
 
 

@@ -5,29 +5,50 @@ button {
 }
 
 p {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 #graph {
+  height: 300px;
+  max-height: 300px;
+  min-width: 500px;
+  max-width: 100%;
   margin: 20px;
+  padding: 10px 5px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
+}
+
+.graphBarContainer {
+  height: 100%;
+  max-height: 300px;
+  width: 100%;
+  min-width: 10px;
+  max-width: 100%;
+  margin: 0 5px;
+  background: lightgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .graphBar {
-  height: 50px;
-  width: 100px;
-  margin: 10px;
-  background: lightgrey;
+  height: 0%;
+  max-height: 300px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 5px;
+  background: yellow;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.graphBar p {
+.graphBarContainer p {
   margin: 5px;
+  text-align: center;
 }
