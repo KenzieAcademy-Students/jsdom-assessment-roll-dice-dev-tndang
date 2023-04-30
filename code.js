@@ -7,7 +7,7 @@ let rollDie = function() { // This function gives a random number between 1 to 6
     return rollResult;
 }
 
-let rollPair = function() { // This function simulates rolling a pair of dice
+let rollPair = function() { // This function simulates rolling a pair of dice returning the result and saving it to the results array
     let pairResult = 0;
     for (let roll = 1; roll <= 2; roll++) {
         pairResult += rollDie();
@@ -20,13 +20,19 @@ let rollPair = function() { // This function simulates rolling a pair of dice
     return pairResult;
 }
 
-let pairThousandRolls = function() {
+let pairThousandRolls = function() { // This function simulates rolling one thousand additional pairs of dice
     for (let roll = 1; roll <= 1000; roll++) {
         rollPair();
     }
 
     let finalResult = document.getElementById("result");
     finalResult.innerText = `You rolled an additional 1000 times!`;
+
+    roll.removeEventListener("click", renderGraph);
+}
+
+let rollThousandListener = function() { // This function removes the event listener 1000 roll button renderGraph function when called on
+    rollThousand.removeEventListener("click", renderGraph);
 }
 
 let renderGraph = function () { // This function creates the div and paragraph elements within the graph div
@@ -52,11 +58,12 @@ let graphUpdate = function () { // This function updates the graph results rende
 
 let roll = document.getElementById("roll");
 let rollThousand = document.getElementById("rollThousand");
-let anyButton = document.querySelector("button");
 
 roll.addEventListener("click", rollPair);
 roll.addEventListener("click", renderGraph, {once : true});
+roll.addEventListener("click", rollThousandListener);
 roll.addEventListener("click", graphUpdate);
+
 rollThousand.addEventListener("click", pairThousandRolls);
 rollThousand.addEventListener("click", renderGraph, {once : true});
 rollThousand.addEventListener("click", graphUpdate);
